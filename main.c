@@ -18,12 +18,12 @@ int main()
   }
   printf("pid : %d\n", pid);
   
-  uint64_t base = get_base_address(pid);
-  printf("base address : %#llx\n",base);
-  
   mach_port_t task;
   attach(pid, &task);
 
+  uint64_t base = get_base_address(pid, task);
+  printf("base address : %#llx\n",base);
+  
   char buffer[11] = {0};
   char value[11] = "__PUSH0EBP";
   uint64_t addr = base + offset;

@@ -8,9 +8,8 @@ int align_size(size_t size)
 }
 
 
-uint64_t get_base_address(pid_t pid)
+uint64_t get_base_address(pid_t pid, mach_port_t task)
 {
-  mach_port_t task;
   kern_return_t kret;
   
   vm_map_size_t vm_size = 0;
@@ -18,13 +17,6 @@ uint64_t get_base_address(pid_t pid)
   natural_t depth = 0;
   struct vm_region_submap_info_64 region_info;
   mach_msg_type_number_t region_info_cnt = sizeof(region_info);
-
-  kret = task_for_pid(mach_task_self(), pid, &task);
-  if(kret != KERN_SUCCESS)
-  {
-    printf("task_for_pid() error %s\n", mach_error_string(kret));
-    return kret;
-  }
 
   kret = mach_vm_region_recurse(task, &base_addr, &vm_size,
                                 &depth, (vm_region_recurse_info_t)&region_info, &region_info_cnt); 

@@ -9,7 +9,7 @@ typedef struct kinfo_proc kinfo_proc;
 
 int align_size(size_t size);
 
-uint64_t get_base_address(pid_t pid);
+uint64_t get_base_address(pid_t pid, mach_port_t task);
 pid_t get_pid(char *proc_name);
 kern_return_t attach(pid_t pid, mach_port_t *task);
 
