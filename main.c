@@ -21,7 +21,7 @@ int main()
   mach_port_t task;
   attach(pid, &task);
 
-  uint64_t base = get_base_address(pid, task);
+  uint64_t base = get_base_address(task);
   printf("base address : %#llx\n",base);
   
   char buffer[11] = {0};

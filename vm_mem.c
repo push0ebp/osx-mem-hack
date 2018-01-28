@@ -8,7 +8,7 @@ int align_size(size_t size)
 }
 
 
-uint64_t get_base_address(pid_t pid, mach_port_t task)
+uint64_t get_base_address(mach_port_t task)
 {
   kern_return_t kret;
   
